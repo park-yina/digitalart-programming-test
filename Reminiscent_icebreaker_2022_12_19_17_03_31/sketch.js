@@ -25,8 +25,7 @@ function draw() {
   randomSeed(actRandomSeed);
 
   tileCount = mouseY / 15;
-
-  for (var gridY = 0; gridY < tileCount; gridY++) {
+for (var gridY = 0; gridY < tileCount; gridY+=5) {
     for (var gridX = 0; gridX < tileCount; gridX++) {
 
       var posX = width / tileCount * gridX;
@@ -44,12 +43,12 @@ function draw() {
 
       if (toggle == 0) {
         stroke(colorLeft);
-        line(posX, posY, posX + (width / tileCount) / 2, posY + height / tileCount);
+        line(posX, posY, posX + (width / tileCount) / 2, random(0,height/2));
         line(posX + (width / tileCount) / 2, posY, posX + (width / tileCount), posY + height / tileCount);
       }
       if (toggle == 1) {
         stroke(colorRight);
-        line(posX, posY + width / tileCount, posX + (height / tileCount) / 2, posY);
+        line(posX, posY + width / tileCount, posX + (height / tileCount) / 2,posY);
         line(posX + (height / tileCount) / 2, posY + width / tileCount, posX + (height / tileCount), random(0,height));
       }
     }
