@@ -1,55 +1,57 @@
 'use strict';
-var tileCount = 20;
-var actRandomSeed = 0;
 
-var actStrokeCap;
+let tileCount = 1;
+let actRandomSeed = 0;
+
+let colorLeft;
+let colorRight;
+let alphaLeft=0;
+let alphaRight = 100;
+let transparentLeft = false;
+let transparentRight = false;
 
 function setup() {
   createCanvas(600, 600);
+  colorMode(HSB, 360, 100, 100, 100);
 
-  actStrokeCap = ROUND;
+  colorRight = color(0, 0, 0, alphaRight);
+  colorLeft = color(323, 100, 77, alphaLeft);
 }
 
 function draw() {
   clear();
-  strokeCap(actStrokeCap);
+  strokeWeight(mouseX / 30);
 
   randomSeed(actRandomSeed);
 
-  for (var gridY = 0; gridY < tileCount; gridY+=2) {
+  tileCount = mouseY / 15;
+
+  for (var gridY = 0; gridY < tileCount; gridY++) {
     for (var gridX = 0; gridX < tileCount; gridX++) {
 
       var posX = width / tileCount * gridX;
       var posY = height / tileCount * gridY;
 
-      var toggle = int(random(0, 3));
+      alphaLeft = transparentLeft ? gridY * 10 : 100;
+
+      colorLeft = color(hue(colorLeft), saturation(colorLeft), brightness(colorLeft), alphaLeft);
+
+      alphaRight = transparentRight ? 100 - gridY * 10 : 100;
+
+      colorRight = color(hue(colorRight), saturation(colorRight), brightness(colorRight), alphaRight);
+
+      var toggle = int(random(0, 2));
 
       if (toggle == 0) {
-        strokeWeight(mouseX / 20);
-        line(posX, posY, posX + width / tileCount, posY + height / tileCount);
+        stroke(colorLeft);
+        line(posX, posY, posX + (width / tileCount) / 2, posY + height / tileCount);
+        line(posX + (width / tileCount) / 2, posY, posX + (width / tileCount), posY + height / tileCount);
       }
       if (toggle == 1) {
-        strokeWeight(mouseY / 20);
-        line(posX, posY + width / tileCount, posX + height / tileCount, posY);
-      }
-      else{
-        strokeWeight(mouseX / 20);
-        circle(posX + width / tileCount, posY + height / tileCount,random(0,3));
+        stroke(colorRight);
+        line(posX, posY + width / tileCount, posX + (height / tileCount) / 2, posY);
+        line(posX + (height / tileCount) / 2, posY + width / tileCount, posX + (height / tileCount), random(0,height));
       }
     }
   }
-}
-
-function mousePres
-
-function mousePressed() {
-  actRandomSeed = random(100000);
-}
-
-function keyReleased() {
-  if (key == 's' || key == 'S') saveCanvas(gd.timestamp(), 'png');
-
-  if (key == '1') actStrokeCap = ROUND;
-  if (key == '2') actStrokeCap = SQUARE;
-  if (key == '3') actStrokeCap = PROJECT;
 }
