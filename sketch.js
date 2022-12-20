@@ -7,7 +7,6 @@ let attractor;
 function setup() {
   createCanvas(640, 360);
   system =new ParticleSystem(createVector(random(width-12,width/2),random(height-12,height/2)));
-     system2 =new Mouse(createVector(mouseX,mouseY));
   for (let i = 0; i < 10; i++) {
     movers[i] = new Mover(random(0.1, 2), random(width), random(height));
   }
@@ -27,6 +26,8 @@ function draw() {
 
     movers[i].update();
     movers[i].display();
+    system.addParticle();
+  system.run();
   }
 }
  function mouseClicked(){
@@ -36,11 +37,8 @@ function draw() {
                else{
                  valu=255;
                }
-    system.addParticle();
-  system.run();
-  system.addParticle2();
-      system.run2();
- }
+   
+}
 function mouseMoved() {
   attractor.handleHover(mouseX, mouseY);
 }
