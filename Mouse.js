@@ -36,9 +36,22 @@ class Mouse{
   this.position.add(this.velocity);
   this.lifespan += 30;
   }
-  display(){
+  display1(){
   stroke(random(0,255),random(0,255));
   strokeWeight(2);
   fill(random(0,255),random(0,255),random(0,255),this.lifespan);
   circle(this.position.x, this.position.y,random(1,10));
 }
+   update4(){
+    this.acc=createVector(random(-0.01,0.01),random(-0.02,1));
+    this.velocity=createVector(random(-0.01,0.5),random(-0.05,0.3));
+    this.lifespan=160;
+     this.velocity.add(this.acc);
+  this.position.add(this.velocity);
+  this.lifespan += 30;
+  }
+  display(){
+  stroke(random(0,255),random(0,255));
+  strokeWeight(2);
+  fill(random(0,255),random(0,255),random(0,255),this.lifespan);
+  circle(this.position.x, this.position.y,random(1,10));
