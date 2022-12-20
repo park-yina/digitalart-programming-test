@@ -25,45 +25,40 @@ function draw() {
     movers[i].display();
   }
  
+function mouseMoved() {
+  attractor.handleHover(mouseX, mouseY);
+}
+
+function mousePressed() {
+  attractor.handlePress(mouseX, mouseY);
+  
+}
+
+function mouseDragged() {
+  attractor.handleHover(mouseX, mouseY);
+  attractor.handleDrag(mouseX, mouseY);
+}
+
+function mouseReleased() {
+  attractor.stopDragging();
+}
+}
+
+function mouseMoved() {
+  attractor.handleHover(mouseX, mouseY);
+}
+
+function mousePressed() {
+  attractor.handlePress(mouseX, mouseY);
+  
+}
+
+function mouseDragged() {
+  attractor.handleHover(mouseX, mouseY);
+  attractor.handleDrag(mouseX, mouseY);
+
 function mouseClicked(){
       background(0);
      system.addParticle2();
       system.run2();
-}
-
-function mouseMoved() {
-  attractor.handleHover(mouseX, mouseY);
-}
-
-function mousePressed() {
-  attractor.handlePress(mouseX, mouseY);
-  
-}
-
-function mouseDragged() {
-  attractor.handleHover(mouseX, mouseY);
-  attractor.handleDrag(mouseX, mouseY);
-}
-
-function mouseReleased() {
-  attractor.stopDragging();
-}
-}
-
-function mouseMoved() {
-  attractor.handleHover(mouseX, mouseY);
-}
-
-function mousePressed() {
-  attractor.handlePress(mouseX, mouseY);
-  
-}
-
-function mouseDragged() {
-  attractor.handleHover(mouseX, mouseY);
-  attractor.handleDrag(mouseX, mouseY);
-}
-
-function mouseReleased() {
-  attractor.stopDragging();
 }
