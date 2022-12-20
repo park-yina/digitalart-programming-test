@@ -1,20 +1,42 @@
-let system2;
-let system;
+let movers = [];
+
+let attractor;
+
 function setup() {
-  createCanvas(720,400);
-  system =new ParticleSystem(createVector(random(width-12,width/2),random(height-12,height/2)));
-     system2 =new Mouse(createVector(mouseX,mouseY));
-
+  createCanvas(640, 360);
+  for (let i = 0; i < 100; i++) {
+    movers[i] = new Mover(random(0.1, 2), random(width), random(height));
+  }
+  attractor = new Attractor();
 }
-function draw() {
-  background("black");
-  system.addParticle();
-  system.run();
-  if(mouseIsPressed===true){
-     system.addParticle2();
-      system.run2();
 
+function draw() {
+  background(255);
+
+  attractor.display();
+
+  for (let i = 0; i < movers.length; i++) {
+    let force = attractor.calculateAttraction(movers[i]);
+    movers[i].applyForce(force);
+
+    movers[i].update();
+    movers[i].display();
   }
 }
 
+function mouseMoved() {
+  attractor.handleHover(mouseX, mouseY);
+}
 
+function mousePressed() {
+  attractor.handlePress(mouseX, mouseY);
+}
+
+function mouseDragged() {
+  attractor.handleHover(mouseX, mouseY);
+  attractor.handleDrag(mouseX, mouseY);
+}
+
+function mouseReleased() {
+  attractor.stopDragging();
+}
