@@ -1,5 +1,5 @@
 let movers = [];
-
+let system;
 let attractor;
 
 function setup() {
@@ -7,6 +7,8 @@ function setup() {
   for (let i = 0; i < 100; i++) {
     movers[i] = new Mover(random(0.1, 2), random(width), random(height));
   }
+   system=new ParticleSystem(createVector(mouseX,mouseY));
+
   attractor = new Attractor();
 }
 
@@ -22,7 +24,14 @@ function draw() {
     movers[i].update();
     movers[i].display();
   }
+  if(mouseIsPressed===true){
+     system.addParticle2();
+      system.run2();
+         system.addParticle3();
+          system.run3();
+  }
 }
+
 
 function mouseMoved() {
   attractor.handleHover(mouseX, mouseY);
@@ -30,6 +39,7 @@ function mouseMoved() {
 
 function mousePressed() {
   attractor.handlePress(mouseX, mouseY);
+  
 }
 
 function mouseDragged() {
