@@ -25,6 +25,7 @@ function draw() {
     movers[i].display();
   }
  if(mouseIsPressed===true){
+       background(0);
      system.addParticle2();
       system.run2();
   }
