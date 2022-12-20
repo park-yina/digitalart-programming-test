@@ -24,12 +24,11 @@ function draw() {
     movers[i].update();
     movers[i].display();
   }
-  if(mouseIsPressed===true){
+ if(mouseIsPressed===true){
      system.addParticle2();
       system.run2();
-         system.addParticle3();
-          system.run3();
   }
+}
 }
 
 
